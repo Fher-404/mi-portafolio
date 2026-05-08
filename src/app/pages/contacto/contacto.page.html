@@ -1,0 +1,141 @@
+<!-- /*Vista de la página de contacto. Contiene un formulario reactivo
+con validaciones, lista de canales de contacto directo,
+y feedback visual con ion-alert (éxito) e ion-toast (error).
+*/ -->
+
+<!-- ══════════════════════════ HEADER ══════════════════════════ -->
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Contacto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!-- ══════════════════════════ CONTENIDO ══════════════════════════ -->
+<ion-content [fullscreen]="true" class="ion-padding">
+
+  <!-- ─── Tarjeta del formulario de contacto ─── -->
+  <ion-card class="form-card">
+    <ion-card-header>
+      <ion-card-title>Envíame un mensaje</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <!-- Formulario reactivo vinculado con [formGroup] -->
+      <form [formGroup]="formularioContacto" novalidate>
+
+        <!-- Campo: Nombre completo -->
+        <ion-item class="form-item">
+          <ion-label position="floating">Nombre completo</ion-label>
+          <ion-input
+            formControlName="nombre"
+            type="text"
+            id="input-nombre"
+            autocomplete="name"
+          ></ion-input>
+        </ion-item>
+        <!-- Mensaje de error: si el campo es inválido y fue tocado, muestro el error -->
+        @if (nombreCtrl?.invalid && nombreCtrl?.touched) {
+          <ion-note color="danger" class="error-note">
+            El nombre es obligatorio (mínimo 2 caracteres).
+          </ion-note>
+        }
+
+        <!-- Campo: Correo electrónico -->
+        <ion-item class="form-item">
+          <ion-label position="floating">Correo electrónico</ion-label>
+          <ion-input
+            formControlName="correo"
+            type="email"
+            id="input-correo"
+            autocomplete="email"
+          ></ion-input>
+        </ion-item>
+        <!-- Mensajes de error diferenciados: requerido vs. formato inválido -->
+        @if (correoCtrl?.touched && correoCtrl?.errors?.['required']) {
+          <ion-note color="danger" class="error-note">
+            El correo es obligatorio.
+          </ion-note>
+        }
+        @if (correoCtrl?.touched && correoCtrl?.errors?.['email']) {
+          <ion-note color="danger" class="error-note">
+            Ingresa un correo con formato válido (ej: nombre@dominio.com).
+          </ion-note>
+        }
+
+        <!-- Campo: Mensaje -->
+        <ion-item class="form-item">
+          <ion-label position="floating">Mensaje</ion-label>
+          <ion-textarea
+            formControlName="mensaje"
+            rows="4"
+            id="input-mensaje"
+          ></ion-textarea>
+        </ion-item>
+        <!-- Mensaje de error del campo mensaje -->
+        @if (mensajeCtrl?.invalid && mensajeCtrl?.touched) {
+          <ion-note color="danger" class="error-note">
+            El mensaje es obligatorio (mínimo 10 caracteres).
+          </ion-note>
+        }
+
+        <!-- Botón de envío del formulario -->
+        <ion-button
+          expand="block"
+          color="secondary"
+          class="btn-enviar"
+          (click)="enviarMensaje()"
+          id="btn-enviar-mensaje"
+        >
+          <ion-icon slot="start" name="send-outline"></ion-icon>
+          Enviar mensaje
+        </ion-button>
+
+      </form>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- ─── Sección: Canales de contacto directo ─── -->
+  <h2 class="seccion-titulo">O contáctame directamente</h2>
+
+  <!-- Aquí recorro canalesContacto[] y muestro cada canal como un ítem con enlace -->
+  <ion-list class="channels-list" lines="full">
+    @for (canal of canalesContacto; track canal.label) {
+      <ion-item
+        class="channel-item"
+        [href]="canal.href"
+        target="_blank"
+        detail="true"
+      >
+        <!-- Ícono del canal de contacto -->
+        <ion-icon [name]="canal.icono" slot="start" color="secondary"></ion-icon>
+        <ion-label>
+          <h3>{{ canal.label }}</h3>
+          <ion-note>{{ canal.valor }}</ion-note>
+        </ion-label>
+      </ion-item>
+    }
+  </ion-list>
+
+  <!-- ─── Alert de mensaje enviado exitosamente ─── -->
+  <ion-alert
+    [isOpen]="mostrarAlertaExito"
+    header="¡Mensaje enviado!"
+    message="Gracias por contactarme. Te responderé pronto."
+    [buttons]="alertaButtons"
+    (didDismiss)="mostrarAlertaExito = false"
+  ></ion-alert>
+
+  <!-- ─── Toast de error de validación del formulario ─── -->
+  <ion-toast
+    [isOpen]="mostrarToastError"
+    [message]="mensajeError"
+    duration="3000"
+    color="danger"
+    position="bottom"
+    (didDismiss)="mostrarToastError = false"
+  ></ion-toast>
+
+</ion-content>

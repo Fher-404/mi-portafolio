@@ -1,0 +1,169 @@
+<!-- /* Vista de la página de información personal. Incluye datos
+de contacto, formación en acordeones, habilidades con chips
+de colores dinámicos, proyectos en tarjetas y botón de CV. */ -->
+
+<!-- ══════════════════════════ HEADER ══════════════════════════ -->
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Sobre mí</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!-- ══════════════════════════ CONTENIDO ══════════════════════════ -->
+<ion-content [fullscreen]="true" class="ion-padding">
+
+  <!-- ─── Sección: Datos personales ─── -->
+  <h2 class="section-title">Datos personales</h2>
+
+  <ion-list class="data-list" lines="full">
+
+    <!-- Nombre completo -->
+    <ion-item class="data-item">
+      <ion-icon name="person-outline" slot="start" color="secondary"></ion-icon>
+      <ion-label>
+        <h3>Nombre</h3>
+        <ion-note>Fernando Nazareno Marcano Chirinos</ion-note>
+      </ion-label>
+    </ion-item>
+
+    <!-- Ciudad y País -->
+    <ion-item class="data-item">
+      <ion-icon name="location-outline" slot="start" color="secondary"></ion-icon>
+      <ion-label>
+        <h3>Ubicación</h3>
+        <ion-note>La Libertad, 23 de Enero – Caracas</ion-note>
+      </ion-label>
+    </ion-item>
+
+    <!-- Correo electrónico -->
+    <ion-item class="data-item">
+      <ion-icon name="mail-outline" slot="start" color="secondary"></ion-icon>
+      <ion-label>
+        <h3>Correo</h3>
+        <ion-note>marcanofernando2020@gmail.com</ion-note>
+      </ion-label>
+    </ion-item>
+
+    <!-- GitHub (enlace externo) -->
+    <ion-item class="data-item" href="https://github.com/fher-404" target="_blank" detail="true">
+      <ion-icon name="logo-github" slot="start" color="secondary"></ion-icon>
+      <ion-label>
+        <h3>GitHub</h3>
+        <ion-note>github.com/fher-404</ion-note>
+      </ion-label>
+    </ion-item>
+
+    <!-- LinkedIn (enlace externo) -->
+    <ion-item class="data-item" href="https://linkedin.com/in/femarc" target="_blank" detail="true">
+      <ion-icon name="logo-linkedin" slot="start" color="secondary"></ion-icon>
+      <ion-label>
+        <h3>LinkedIn</h3>
+        <ion-note>linkedin.com/in/femarc</ion-note>
+      </ion-label>
+    </ion-item>
+
+  </ion-list>
+
+  <!-- ─── Sección: Formación académica ─── -->
+  <h2 class="section-title">Formación académica</h2>
+
+  <!-- Aquí recorro el arreglo educacion[] usando ion-accordion para cada ítem -->
+  <ion-accordion-group class="accordion-group">
+    @for (edu of educacion; track edu.institucion) {
+      <ion-accordion class="edu-accordion">
+
+        <!-- Header del acordeón: institución y título del grado -->
+        <ion-item slot="header" class="accordion-header">
+          <ion-label>
+            <h3 class="edu-titulo">{{ edu.titulo }}</h3>
+            <ion-note>{{ edu.institucion }}</ion-note>
+          </ion-label>
+        </ion-item>
+
+        <!-- Contenido del acordeón: período y descripción -->
+        <div slot="content" class="accordion-content">
+          <p class="edu-periodo">📅 {{ edu.periodo }}</p>
+          <p class="edu-desc">{{ edu.descripcion }}</p>
+        </div>
+
+      </ion-accordion>
+    }
+  </ion-accordion-group>
+
+  <!-- ─── Sección: Habilidades técnicas ─── -->
+  <h2 class="section-title">Habilidades técnicas</h2>
+
+  <!-- Aquí recorro habilidades[] y aplico colores dinámicos según categoría con obtenerColorChip() -->
+  <div class="chip-container">
+    @for (hab of habilidades; track hab.nombre) {
+      <ion-chip
+        [style.background]="obtenerColorChip(hab.categoria).bg"
+        [style.color]="obtenerColorChip(hab.categoria).color"
+        [style.border]="'1px solid ' + obtenerColorChip(hab.categoria).border"
+      >
+        <ion-icon [name]="obtenerIconoCategoria(hab.categoria)"></ion-icon>
+        <ion-label>{{ hab.nombre }}</ion-label>
+      </ion-chip>
+    }
+  </div>
+
+  <!-- ─── Sección: Proyectos ─── -->
+  <h2 class="section-title">Proyectos</h2>
+
+  <!-- Aquí recorro proyectos[] y muestro cada uno en una tarjeta -->
+  @for (proy of proyectos; track proy.titulo) {
+    <ion-card class="proyecto-card">
+      <ion-card-header>
+        <ion-card-title>{{ proy.titulo }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p class="proy-desc">{{ proy.descripcion }}</p>
+
+        <!-- Chips de tecnologías usadas en el proyecto -->
+        <div class="chip-container chip-proy">
+          @for (tech of proy.tecnologias; track tech) {
+            <ion-chip class="chip-neutral">
+              <ion-label>{{ tech }}</ion-label>
+            </ion-chip>
+          }
+        </div>
+
+        <!-- Botón "Ver proyecto" -->
+        <ion-button
+          fill="outline"
+          size="small"
+          color="secondary"
+          class="btn-proyecto"
+        >
+          <ion-icon slot="start" name="open-outline"></ion-icon>
+          Ver proyecto
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  }
+
+  <!-- ─── Botón: Descargar CV ─── -->
+  <ion-button
+    expand="block"
+    color="secondary"
+    class="btn-cv"
+    (click)="descargarCV()"
+  >
+    <ion-icon slot="start" name="download-outline"></ion-icon>
+    Descargar CV
+  </ion-button>
+
+  <!-- Toast de confirmación de descarga del CV -->
+  <ion-toast
+    [isOpen]="mostrarToast"
+    [message]="mensajeToast"
+    duration="3000"
+    color="success"
+    position="bottom"
+    (didDismiss)="mostrarToast = false"
+  ></ion-toast>
+
+</ion-content>

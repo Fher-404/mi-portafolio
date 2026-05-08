@@ -1,0 +1,169 @@
+/* Estilos de la página de información personal. Define la
+apariencia de ítems de datos, acordeones, chips y tarjetas
+de proyectos. */
+
+// ─── Título de sección: uppercase azul con letter-spacing ───
+.section-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #3A80C2;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin: 20px 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--ion-border-color);
+}
+
+// ─── Lista de datos personales ───
+.data-list {
+  --background: transparent;
+  background: transparent;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+// ─── Ítem de datos personales ───
+.data-item {
+  --background: #1E2229;
+  --border-color: #3D4655;
+  --color: var(--ion-text-color);
+
+  h3 {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--chip-neutral-color);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  ion-note {
+    font-size: 0.9rem;
+    color: var(--ion-text-color);
+  }
+}
+
+// ─── Acordeones de formación académica ───
+.accordion-group {
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.edu-accordion {
+  --background: #1E2229;
+  --border-color: #3D4655;
+}
+
+.accordion-header {
+  --background: #1E2229;
+  --border-color: #3D4655;
+  --color: var(--ion-text-color);
+
+  .edu-titulo {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--ion-text-color);
+  }
+
+  ion-note {
+    font-size: 0.8rem;
+    color: var(--chip-neutral-color);
+  }
+}
+
+.accordion-content {
+  background: #1E2229;
+  padding: 12px 16px 16px;
+  border-top: 1px solid #3D4655;
+
+  .edu-periodo {
+    font-size: 0.85rem;
+    color: #00C2A8;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+
+  .edu-desc {
+    font-size: 0.9rem;
+    color: var(--chip-neutral-color);
+    line-height: 1.5;
+    margin: 0;
+  }
+}
+
+// ─── Contenedor de chips con flex-wrap ───
+.chip-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+// ─── Chips de habilidades técnicas ───
+ion-chip {
+  font-size: 12px;
+  height: 28px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  ion-icon {
+    font-size: 0.8rem;
+  }
+}
+
+// ─── Tarjetas de proyectos: borde izquierdo teal ───
+ion-card.proyecto-card {
+  --background: #1E2229;
+  border-radius: 12px;
+  border-left: 3px solid #00C2A8;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+
+  ion-card-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ion-text-color);
+  }
+
+  .proy-desc {
+    font-size: 0.9rem;
+    color: var(--chip-neutral-color);
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+}
+
+// ─── Chips de tecnologías en proyectos (neutros) ───
+.chip-neutral {
+  --background: var(--chip-neutral-bg);
+  --color: var(--chip-neutral-color);
+  border: 1px solid var(--chip-neutral-border);
+  font-size: 0.75rem;
+  height: 24px;
+  border-radius: 4px;
+}
+
+// ─── Contenedor de chips dentro de proyectos ───
+.chip-proy {
+  margin-bottom: 10px;
+}
+
+// ─── Botón "Ver proyecto" ───
+.btn-proyecto {
+  --border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+// ─── Botón descargar CV al final de la página ───
+.btn-cv {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  --border-radius: 8px;
+  font-weight: 600;
+}

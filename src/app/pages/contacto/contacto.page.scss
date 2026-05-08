@@ -1,0 +1,110 @@
+/* Estilos de la página de contacto. Define apariencia del
+formulario reactivo, los mensajes de error, los canales de
+contacto y los botones de acción. */
+
+// ─── Tarjeta contenedora del formulario ───
+.form-card {
+  --background: #1E2229;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+
+  ion-card-title {
+    color: var(--ion-text-color);
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+}
+
+// ─── Ítem del formulario con fondo oscuro ───
+.form-item {
+  --background: #1E2229;
+  --border-color: #3D4655;
+  --color: #E2E8F0;
+  --highlight-color-focused: #00C2A8;
+  --placeholder-color: #8892A4;
+  margin-bottom: 4px;
+  border-radius: 8px;
+
+  ion-label {
+    color: #6BAED6 !important;
+  }
+}
+
+// ─── Inputs y textareas con color de texto claro ───
+ion-input, ion-textarea {
+  --color: #E2E8F0;
+  --placeholder-color: #8892A4;
+}
+
+// ─── Nota de error debajo de cada campo ───
+.error-note {
+  font-size: 11px;
+  padding-left: 16px;
+  padding-bottom: 6px;
+  display: block;
+  animation: slideInError 0.2s ease-out;
+}
+
+// ─── Botón de envío con radio personalizado ───
+.btn-enviar {
+  margin-top: 16px;
+  --border-radius: 8px;
+  font-weight: 600;
+}
+
+// ─── Título de la sección de canales directos ───
+.seccion-titulo {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #3A80C2;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin: 20px 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--ion-border-color);
+}
+
+// ─── Lista de canales de contacto ───
+.channels-list {
+  --background: transparent;
+  background: transparent;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+// ─── Ítem de canal de contacto con hover effect ───
+.channel-item {
+  --background: #1E2229;
+  --border-color: #2C3340;
+  --color: var(--ion-text-color);
+  --detail-icon-color: var(--chip-neutral-color);
+  transition: background 0.2s ease;
+
+  &:hover {
+    --background: #252C36;
+  }
+
+  h3 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--ion-text-color);
+  }
+
+  ion-note {
+    font-size: 0.8rem;
+    color: var(--chip-neutral-color);
+  }
+}
+
+// ─── Animación de aparición de mensajes de error ───
+@keyframes slideInError {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,108 @@
+<!-- /*Vista de la página de inicio. Contiene el header con menú,
+sección hero con avatar y datos del desarrollador, tarjeta de
+presentación y tarjeta con stack tecnológico principal.*/ -->
+
+<!-- ══════════════════════════ HEADER ══════════════════════════ -->
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <!-- Botón de menú lateral (hamburger) -->
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Resumen</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!-- ══════════════════════════ CONTENIDO ══════════════════════════ -->
+<ion-content [fullscreen]="true" class="ion-padding">
+
+  <!-- ─── Sección Hero: Avatar, nombre, eslogan y saludo ─── -->
+  <section class="hero-section">
+
+    <!-- Avatar circular del desarrollador -->
+    <ion-avatar class="hero-avatar">
+      <img src="assets/yo.jpg" alt="Foto de perfil del desarrollador" />
+    </ion-avatar>
+
+    <!-- Nombre completo del desarrollador -->
+    <h1 class="hero-nombre">{{ nombreCompleto }}</h1>
+
+    <!-- Eslogan profesional en cursiva -->
+    <p class="eslogan">{{ eslogan }}</p>
+
+    <!-- Saludo dinámico en color teal según la hora del día -->
+    <p class="saludo-text">{{ saludo }}</p>
+
+    <!-- Badge que muestra la tecnología que se estudia hoy (aleatoria) -->
+    <ion-badge color="secondary" class="badge-tech">
+      🚀 Hoy estudio: {{ techDestacada }}
+    </ion-badge>
+
+  </section>
+
+  <!-- ─── Tarjeta: ¿Quién soy? ─── -->
+  <ion-card class="profile-card">
+    <ion-card-header>
+      <ion-card-title>¿Quién soy?</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>
+        Soy <strong>estudiante de Ingeniería Informática</strong> con bases sólidas en Ingeniería de Software,
+        actualmente iniciando la Certificación de Ciberseguridad de Google. Cuento con experiencia previa en el manejo
+        de datos sensibles y análisis documental, lo que me ha permitido desarrollar rigor ético y atención al detalle.
+      </p>
+      <p>
+        Poseo conocimientos técnicos en sistemas operativos (Linux y Windows),
+        <strong>Docker, redes, Python y TypeScript</strong> enfocados en la automatización de tareas. Busco aportar mi capacidad analítica y seguir creciendo en infraestructura tecnológica.
+      </p>
+
+      <!-- Botón para navegar a la página de Información Personal -->
+      <ion-button
+        expand="block"
+        color="secondary"
+        class="btn-ver-mas"
+        (click)="verMasSobreMi()"
+      >
+        <ion-icon slot="end" name="arrow-forward-outline"></ion-icon>
+        Ver más sobre mí
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- ─── Tarjeta: Stack principal ─── -->
+  <ion-card class="stack-card">
+    <ion-card-header>
+      <ion-card-title>Stack principal</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="chips-container">
+
+        <!-- Chip: Python -->
+        <ion-chip class="chip-primary">
+          <ion-icon name="code-slash-outline"></ion-icon>
+          <ion-label>Python</ion-label>
+        </ion-chip>
+
+        <!-- Chip: TypeScript -->
+        <ion-chip class="chip-primary">
+          <ion-icon name="code-slash-outline"></ion-icon>
+          <ion-label>TypeScript</ion-label>
+        </ion-chip>
+
+        <!-- Chip: Docker -->
+        <ion-chip class="chip-primary">
+          <ion-icon name="code-slash-outline"></ion-icon>
+          <ion-label>Docker</ion-label>
+        </ion-chip>
+
+        <!-- Chip: PostgreSQL -->
+        <ion-chip class="chip-primary">
+          <ion-icon name="code-slash-outline"></ion-icon>
+          <ion-label>PostgreSQL</ion-label>
+        </ion-chip>
+
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

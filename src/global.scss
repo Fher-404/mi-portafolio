@@ -1,0 +1,66 @@
+/*
+ * Estilos globales de la aplicación de portafolio.
+ * Importa los CSS base de Ionic, la paleta oscura siempre activa,
+ * y la fuente Inter desde Google Fonts.
+ */
+
+/* Core CSS requerido para que los componentes de Ionic funcionen correctamente */
+@import "@ionic/angular/css/core.css";
+
+/* CSS básico de la app Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Utilidades opcionales de CSS */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/*
+ * Modo oscuro siempre activo — no detectamos preferencia del sistema.
+ * Usamos dark.always.css para forzar el tema oscuro en todos los dispositivos.
+ */
+@import "@ionic/angular/css/palettes/dark.always.css";
+
+/* ─── Tipografía: Inter desde Google Fonts ─── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ─── Estilos globales de la aplicación ─── */
+* {
+  font-family: 'Inter', 'Roboto', sans-serif !important;
+  box-sizing: border-box;
+}
+
+/* Forzar fondo oscuro en el body */
+body {
+  background-color: #111318;
+  color: #E2E8F0;
+}
+
+/* Scrollbar personalizado para escritorio */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1E2229;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3D4655;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2A5F94;
+}
+
+/* Selección de texto con color acento */
+::selection {
+  background: rgba(0, 194, 168, 0.25);
+  color: #E2E8F0;
+}

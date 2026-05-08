@@ -1,0 +1,7 @@
+{
+  "name": "mi-portafolio",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
