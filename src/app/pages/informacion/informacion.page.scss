@@ -25,8 +25,8 @@ de proyectos. */
 
 // ─── Ítem de datos personales ───
 .data-item {
-  --background: #1E2229;
-  --border-color: #3D4655;
+  --background: var(--custom-card-bg);
+  --border-color: var(--ion-item-border-color);
   --color: var(--ion-text-color);
 
   h3 {
@@ -51,13 +51,13 @@ de proyectos. */
 }
 
 .edu-accordion {
-  --background: #1E2229;
-  --border-color: #3D4655;
+  --background: var(--custom-card-bg);
+  --border-color: var(--ion-item-border-color);
 }
 
 .accordion-header {
-  --background: #1E2229;
-  --border-color: #3D4655;
+  --background: var(--custom-card-bg);
+  --border-color: var(--ion-item-border-color);
   --color: var(--ion-text-color);
 
   .edu-titulo {
@@ -73,9 +73,9 @@ de proyectos. */
 }
 
 .accordion-content {
-  background: #1E2229;
+  background: var(--custom-card-bg);
   padding: 12px 16px 16px;
-  border-top: 1px solid #3D4655;
+  border-top: 1px solid var(--ion-item-border-color);
 
   .edu-periodo {
     font-size: 0.85rem;
@@ -119,7 +119,7 @@ ion-chip {
 
 // ─── Tarjetas de proyectos: borde izquierdo teal ───
 ion-card.proyecto-card {
-  --background: #1E2229;
+  --background: var(--custom-card-bg);
   border-radius: 12px;
   border-left: 3px solid #00C2A8;
   margin-bottom: 12px;

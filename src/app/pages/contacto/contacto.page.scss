@@ -4,7 +4,7 @@ contacto y los botones de acción. */
 
 // ─── Tarjeta contenedora del formulario ───
 .form-card {
-  --background: #1E2229;
+  --background: var(--custom-card-bg);
   border-radius: 12px;
   margin-bottom: 20px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
@@ -18,9 +18,9 @@ contacto y los botones de acción. */
 
 // ─── Ítem del formulario con fondo oscuro ───
 .form-item {
-  --background: #1E2229;
-  --border-color: #3D4655;
-  --color: #E2E8F0;
+  --background: var(--custom-card-bg);
+  --border-color: var(--ion-item-border-color);
+  --color: var(--ion-text-color);
   --highlight-color-focused: #00C2A8;
   --placeholder-color: #8892A4;
   margin-bottom: 4px;
@@ -33,7 +33,7 @@ contacto y los botones de acción. */
 
 // ─── Inputs y textareas con color de texto claro ───
 ion-input, ion-textarea {
-  --color: #E2E8F0;
+  --color: var(--ion-text-color);
   --placeholder-color: #8892A4;
 }
 
@@ -75,14 +75,14 @@ ion-input, ion-textarea {
 
 // ─── Ítem de canal de contacto con hover effect ───
 .channel-item {
-  --background: #1E2229;
-  --border-color: #2C3340;
+  --background: var(--custom-card-bg);
+  --border-color: var(--ion-item-border-color);
   --color: var(--ion-text-color);
   --detail-icon-color: var(--chip-neutral-color);
   transition: background 0.2s ease;
 
   &:hover {
-    --background: #252C36;
+    --background: rgba(var(--ion-color-primary-rgb), 0.1);
   }
 
   h3 {

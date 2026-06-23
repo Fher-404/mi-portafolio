@@ -6,15 +6,15 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { Component, OnInit } from '@angular/core';
+import { ThemeService } from '../../services/theme.service';
 import { addIcons } from 'ionicons';
 import {
   personOutline, locationOutline, mailOutline, logoGithub, logoLinkedin,
   downloadOutline, codeSlashOutline, cloudOutline, constructOutline, languageOutline,
-  chevronDownOutline, openOutline,
+  chevronDownOutline, openOutline, moon, sunny
 } from 'ionicons/icons';
 import {
-  IonHeader, IonToolbar, IonTitle, IonContent, IonButtons,
-  IonMenuButton, IonCard, IonCardHeader, IonCardTitle, IonCardContent,
+  IonContent, IonCard, IonCardHeader, IonCardTitle, IonCardContent,
   IonButton, IonIcon, IonList, IonItem, IonLabel, IonChip,
   IonAccordionGroup, IonAccordion, IonToast, IonNote,
 } from '@ionic/angular/standalone';
@@ -50,8 +50,7 @@ interface Educacion {
   // Importo todos los componentes de Ionic y Angular que uso en esta página
   imports: [
     CommonModule,
-    IonHeader, IonToolbar, IonTitle, IonContent, IonButtons,
-    IonMenuButton, IonCard, IonCardHeader, IonCardTitle, IonCardContent,
+    IonContent, IonCard, IonCardHeader, IonCardTitle, IonCardContent,
     IonButton, IonIcon, IonList, IonItem, IonLabel, IonChip,
     IonAccordionGroup, IonAccordion, IonToast, IonNote,
   ],
@@ -116,12 +115,12 @@ export class InformacionPage implements OnInit {
     },
   ];
 
-  constructor() {
+  constructor(public themeService: ThemeService) {
     // Registro todos los íconos que uso en esta página con addIcons()
     addIcons({
       personOutline, locationOutline, mailOutline, logoGithub, logoLinkedin,
       downloadOutline, codeSlashOutline, cloudOutline, constructOutline, languageOutline,
-      chevronDownOutline, openOutline,
+      chevronDownOutline, openOutline, moon, sunny
     });
   }
 

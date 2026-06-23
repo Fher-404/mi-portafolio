@@ -1,66 +1,38 @@
 <!--
-  Template del menú lateral (sidemenu). Contiene el header del
-  menú con avatar, nombre y subtítulo; la lista de navegación;
-  y el footer con la versión de la app.
+  Componente raíz con barra de navegación superior global.
+  Reemplaza al menú lateral anterior.
 -->
 <ion-app>
-  <ion-split-pane contentId="main-content">
+  <!-- Barra de navegación global superior -->
+  <ion-header class="global-header ion-no-border">
+    <ion-toolbar color="primary">
+      <!-- Título de la App -->
+      <ion-title slot="start" class="app-title">Portafolio | F.M</ion-title>
 
-    <!-- ══════════════════════════ MENÚ LATERAL ══════════════════════════ -->
-    <ion-menu contentId="main-content" type="overlay">
-      <ion-content class="menu-content">
+      <!-- Botones de Navegación -->
+      <ion-buttons slot="end" class="nav-links">
+        @for (p of appPages; track p.url) {
+          <ion-button 
+            [routerLink]="[p.url]" 
+            routerLinkActive="active-nav-link" 
+            routerDirection="root"
+            class="nav-btn">
+            <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+            {{ p.title }}
+          </ion-button>
+        }
+        
+        <!-- Separador visual pequeño -->
+        <div class="nav-divider"></div>
 
-        <!-- Header del menú: avatar, nombre y rol profesional -->
-        <div class="menu-header">
-          <ion-avatar class="menu-avatar">
-            <img src="assets/yo.jpg" alt="Avatar" />
-          </ion-avatar>
-          <h2 class="menu-name">Fernando Marcano</h2>
-          <p class="menu-subtitle">T.S.U. en Informática</p>
-        </div>
+        <!-- Botón de Modo Oscuro -->
+        <ion-button (click)="themeService.toggleTheme()" aria-label="Cambiar tema" class="theme-btn">
+          <ion-icon slot="icon-only" [name]="(themeService.isDarkMode$ | async) ? 'sunny-outline' : 'moon-outline'"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
 
-        <!-- Separador visual -->
-        <div class="menu-divider"></div>
-
-        <!-- Lista de navegación del menú lateral -->
-        <ion-list class="menu-list" lines="none">
-          @for (p of appPages; track p.url) {
-            <ion-menu-toggle auto-hide="false">
-              <ion-item
-                [routerLink]="[p.url]"
-                routerLinkActive="menu-item-active"
-                routerDirection="root"
-                detail="false"
-                class="menu-item"
-              >
-                <!-- Icono de la página con variantes ios/md -->
-                <ion-icon
-                  aria-hidden="true"
-                  slot="start"
-                  [ios]="p.icon + '-outline'"
-                  [md]="p.icon + '-sharp'"
-                  class="menu-icon"
-                ></ion-icon>
-                <ion-label>{{ p.title }}</ion-label>
-              </ion-item>
-            </ion-menu-toggle>
-          }
-        </ion-list>
-
-        <!-- Separador visual antes del footer -->
-        <div class="menu-divider"></div>
-
-        <!-- Footer del menú con versión de la aplicación -->
-        <div class="menu-footer">
-          <ion-note>Mi Portafolio</ion-note>
-          <ion-note class="menu-version">v1.0.0</ion-note>
-        </div>
-
-      </ion-content>
-    </ion-menu>
-
-    <!-- Punto de salida del router — aquí se renderizan las páginas -->
-    <ion-router-outlet id="main-content"></ion-router-outlet>
-
-  </ion-split-pane>
+  <!-- Punto de salida del router — aquí se renderizan las páginas debajo del header -->
+  <ion-router-outlet id="main-content" style="margin-top: 56px;"></ion-router-outlet>
 </ion-app>

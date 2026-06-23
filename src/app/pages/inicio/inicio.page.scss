@@ -67,7 +67,7 @@ del hero, la apariencia de las tarjetas y los chips del stack.
 
 // ─── Tarjetas con fondo oscuro y radio generoso ───
 ion-card {
-  --background: #1E2229;
+  --background: var(--custom-card-bg);
   border-radius: 12px;
   margin-bottom: 16px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
