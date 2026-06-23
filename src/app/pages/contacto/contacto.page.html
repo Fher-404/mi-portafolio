@@ -3,16 +3,6 @@ con validaciones, lista de canales de contacto directo,
 y feedback visual con ion-alert (éxito) e ion-toast (error).
 */ -->
 
-<!-- ══════════════════════════ HEADER ══════════════════════════ -->
-<ion-header [translucent]="true">
-  <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Contacto</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <!-- ══════════════════════════ CONTENIDO ══════════════════════════ -->
 <ion-content [fullscreen]="true" class="ion-padding">
 
@@ -65,6 +55,36 @@ y feedback visual con ion-alert (éxito) e ion-toast (error).
           </ion-note>
         }
 
+        <!-- Campo: Asunto -->
+        <ion-item class="form-item">
+          <ion-select formControlName="asunto" label="Asunto" label-placement="floating">
+            <ion-select-option value="general">Consulta General</ion-select-option>
+            <ion-select-option value="empleo">Oferta de Empleo</ion-select-option>
+            <ion-select-option value="soporte">Soporte Técnico</ion-select-option>
+          </ion-select>
+        </ion-item>
+        @if (asuntoCtrl?.touched && asuntoCtrl?.errors?.['required']) {
+          <ion-note color="danger" class="error-note">
+            El asunto es obligatorio.
+          </ion-note>
+        }
+
+        <!-- Campo Condicional: Empresa (Solo visible si Asunto es "Oferta de Empleo") -->
+        @if (asuntoCtrl?.value === 'empleo') {
+          <ion-item class="form-item">
+            <ion-label position="floating">Nombre de la Empresa</ion-label>
+            <ion-input
+              formControlName="empresa"
+              type="text"
+            ></ion-input>
+          </ion-item>
+          @if (empresaCtrl?.touched && empresaCtrl?.errors?.['required']) {
+            <ion-note color="danger" class="error-note">
+              El nombre de la empresa es obligatorio para ofertas de empleo.
+            </ion-note>
+          }
+        }
+
         <!-- Campo: Mensaje -->
         <ion-item class="form-item">
           <ion-label position="floating">Mensaje</ion-label>
@@ -77,9 +97,15 @@ y feedback visual con ion-alert (éxito) e ion-toast (error).
         <!-- Mensaje de error del campo mensaje -->
         @if (mensajeCtrl?.invalid && mensajeCtrl?.touched) {
           <ion-note color="danger" class="error-note">
-            El mensaje es obligatorio (mínimo 10 caracteres).
+            El mensaje es obligatorio (mínimo 10 y máximo 500 caracteres).
           </ion-note>
         }
+        
+        <!-- Contador de caracteres interactivo -->
+        <div style="text-align: right; font-size: 0.8rem; padding-right: 16px; margin-top: 5px; margin-bottom: 15px;" 
+             [style.color]="(mensajeCtrl?.value?.length || 0) > 480 ? 'var(--ion-color-danger)' : 'var(--ion-color-medium)'">
+          {{ mensajeCtrl?.value?.length || 0 }} / 500 caracteres
+        </div>
 
         <!-- Botón de envío del formulario -->
         <ion-button
@@ -88,9 +114,15 @@ y feedback visual con ion-alert (éxito) e ion-toast (error).
           class="btn-enviar"
           (click)="enviarMensaje()"
           id="btn-enviar-mensaje"
+          [disabled]="isSubmitting"
         >
-          <ion-icon slot="start" name="send-outline"></ion-icon>
-          Enviar mensaje
+          @if (isSubmitting) {
+            <ion-spinner name="crescent"></ion-spinner>
+            <span style="margin-left: 8px;">Enviando...</span>
+          } @else {
+            <ion-icon slot="start" name="send-outline"></ion-icon>
+            Enviar mensaje
+          }
         </ion-button>
 
       </form>

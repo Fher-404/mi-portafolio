@@ -1,16 +1,15 @@
 /*
- * Variables globales de tema. Define la paleta de colores oscura
- * profesional que se aplica a toda la aplicación de portafolio.
- * La app siempre usa modo oscuro, sin detección de preferencia del sistema.
+ * Variables globales de tema.
+ * Define la paleta de colores para modo Claro (por defecto) y Oscuro (.dark).
  */
 
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/theming/
 
-/** Ionic CSS Variables **/
+/** Ionic CSS Variables - Modo Claro (Por Defecto) **/
 :root {
 
-  /* ─── Color principal: Azul marino oscuro ─── */
+  /* ─── Color principal: Azul marino ─── */
   --ion-color-primary:         #2A5F94;
   --ion-color-primary-rgb:     42, 95, 148;
   --ion-color-primary-contrast: #ffffff;
@@ -21,126 +20,72 @@
   /* ─── Color secundario: Teal (acento de acción) ─── */
   --ion-color-secondary:       #00C2A8;
   --ion-color-secondary-rgb:   0, 194, 168;
-  --ion-color-secondary-contrast: #000000;
-  --ion-color-secondary-contrast-rgb: 0, 0, 0;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
   --ion-color-secondary-shade: #00967F;
   --ion-color-secondary-tint:  #33CEBC;
 
   /* ─── Colores de estado ─── */
   --ion-color-tertiary:        #6030FF;
-  --ion-color-tertiary-rgb:    96, 48, 255;
-  --ion-color-tertiary-contrast: #ffffff;
-  --ion-color-tertiary-contrast-rgb: 255, 255, 255;
-  --ion-color-tertiary-shade:  #5429e0;
-  --ion-color-tertiary-tint:   #7045ff;
-
   --ion-color-success:         #2fdf75;
-  --ion-color-success-rgb:     47, 223, 117;
-  --ion-color-success-contrast: #000000;
-  --ion-color-success-contrast-rgb: 0, 0, 0;
-  --ion-color-success-shade:   #29c567;
-  --ion-color-success-tint:    #44e283;
-
   --ion-color-warning:         #ffd534;
-  --ion-color-warning-rgb:     255, 213, 52;
-  --ion-color-warning-contrast: #000000;
-  --ion-color-warning-contrast-rgb: 0, 0, 0;
-  --ion-color-warning-shade:   #e0bb2e;
-  --ion-color-warning-tint:    #ffd948;
-
   --ion-color-danger:          #ff4961;
-  --ion-color-danger-rgb:      255, 73, 97;
-  --ion-color-danger-contrast: #ffffff;
-  --ion-color-danger-contrast-rgb: 255, 255, 255;
-  --ion-color-danger-shade:    #e04055;
-  --ion-color-danger-tint:     #ff5b71;
 
-  --ion-color-dark:            #f4f5f8;
-  --ion-color-dark-rgb:        244, 245, 248;
-  --ion-color-dark-contrast:   #000000;
-  --ion-color-dark-contrast-rgb: 0, 0, 0;
-  --ion-color-dark-shade:      #d7d8da;
-  --ion-color-dark-tint:       #f5f6f9;
+  /* ─── Modo Claro: Fondos y Superficies ─── */
+  --ion-background-color:      #F7F9FC;
+  --ion-background-color-rgb:  247, 249, 252;
 
-  --ion-color-medium:          #989aa2;
-  --ion-color-medium-rgb:      152, 154, 162;
-  --ion-color-medium-contrast: #000000;
-  --ion-color-medium-contrast-rgb: 0, 0, 0;
-  --ion-color-medium-shade:    #86888f;
-  --ion-color-medium-tint:     #a2a4ab;
+  --ion-card-background:       #FFFFFF;
+  --ion-item-background:       #FFFFFF;
+  
+  /* Color personalizado para tarjetas/ítems: Azul claro */
+  --custom-card-bg:            #EAF2F8;
+  --ion-toolbar-background:    #FFFFFF;
+  --ion-tab-bar-background:    #FFFFFF;
 
-  --ion-color-light:           #222428;
-  --ion-color-light-rgb:       34, 36, 40;
-  --ion-color-light-contrast:  #ffffff;
-  --ion-color-light-contrast-rgb: 255, 255, 255;
-  --ion-color-light-shade:     #1e2023;
-  --ion-color-light-tint:      #383a3e;
+  /* ─── Modo Claro: Texto ─── */
+  --ion-text-color:            #1E2229;
+  --ion-text-color-rgb:        30, 34, 41;
 
-  /* ─── Fondo oscuro profesional ─── */
-  --ion-background-color:      #111318;
-  --ion-background-color-rgb:  17, 19, 24;
+  /* ─── Modo Claro: Bordes ─── */
+  --ion-border-color:          #E2E8F0;
+  --ion-item-border-color:     #E2E8F0;
 
-  /* ─── Superficies de componentes ─── */
-  --ion-card-background:       #1E2229;
-  --ion-item-background:       #1E2229;
-  --ion-toolbar-background:    #0D1B2A;
-  --ion-tab-bar-background:    #0D1B2A;
-
-  /* ─── Texto principal ─── */
-  --ion-text-color:            #E2E8F0;
-  --ion-text-color-rgb:        226, 232, 240;
-
-  /* ─── Bordes y separadores ─── */
-  --ion-border-color:          #3D4655;
-  --ion-item-border-color:     #2C3340;
-
-  /* ─── Chips: estilo principal (azul marino) ─── */
-  --chip-primary-bg:           #1B3A5C;
-  --chip-primary-color:        #C4DFF2;
-  --chip-primary-border:       #2A5F94;
-
-  /* ─── Chips: estilo acento (teal) ─── */
-  --chip-accent-bg:            #00967F;
-  --chip-accent-color:         #E2F9F6;
-  --chip-accent-border:        #00C2A8;
-
-  /* ─── Chips: estilo neutro (gris) ─── */
-  --chip-neutral-bg:           #2C3340;
-  --chip-neutral-color:        #8892A4;
-  --chip-neutral-border:       #3D4655;
+  /* ─── Chips: estilo neutro (modo claro) ─── */
+  --chip-neutral-bg:           #E2E8F0;
+  --chip-neutral-color:        #4A5568;
+  --chip-neutral-border:       #CBD5E0;
 
   /* ─── Tipografía ─── */
   --ion-font-family: 'Inter', 'Roboto', sans-serif;
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   La app siempre usa modo oscuro. Mantenemos los mismos valores en el media
-   query para que light mode no rompa el diseño.
-   ───────────────────────────────────────────────────────────────────────────── */
-@media (prefers-color-scheme: light) {
-  :root {
-    --ion-color-primary:         #2A5F94;
-    --ion-color-primary-rgb:     42, 95, 148;
-    --ion-color-primary-shade:   #1B3A5C;
-    --ion-color-primary-tint:    #3A80C2;
+/** Ionic CSS Variables - Modo Oscuro (.dark o .ion-palette-dark) **/
+body.dark, .ion-palette-dark {
+  /* Los colores primary y secondary se mantienen iguales en oscuro */
 
-    --ion-color-secondary:       #00C2A8;
-    --ion-color-secondary-rgb:   0, 194, 168;
-    --ion-color-secondary-shade: #00967F;
-    --ion-color-secondary-tint:  #33CEBC;
+  /* ─── Modo Oscuro: Fondos y Superficies ─── */
+  --ion-background-color:      #111318;
+  --ion-background-color-rgb:  17, 19, 24;
 
-    --ion-background-color:      #111318;
-    --ion-background-color-rgb:  17, 19, 24;
+  --ion-card-background:       #1E2229;
+  --ion-item-background:       #1E2229;
+  --ion-toolbar-background:    #0D1B2A;
+  --ion-tab-bar-background:    #0D1B2A;
+  
+  /* Color personalizado para tarjetas/ítems */
+  --custom-card-bg:            #1E2229;
 
-    --ion-card-background:       #1E2229;
-    --ion-item-background:       #1E2229;
-    --ion-toolbar-background:    #0D1B2A;
-    --ion-tab-bar-background:    #0D1B2A;
+  /* ─── Modo Oscuro: Texto ─── */
+  --ion-text-color:            #E2E8F0;
+  --ion-text-color-rgb:        226, 232, 240;
 
-    --ion-text-color:            #E2E8F0;
-    --ion-text-color-rgb:        226, 232, 240;
+  /* ─── Modo Oscuro: Bordes ─── */
+  --ion-border-color:          #3D4655;
+  --ion-item-border-color:     #2C3340;
 
-    --ion-border-color:          #3D4655;
-    --ion-item-border-color:     #2C3340;
-  }
+  /* ─── Chips: estilo neutro (modo oscuro) ─── */
+  --chip-neutral-bg:           #2C3340;
+  --chip-neutral-color:        #8892A4;
+  --chip-neutral-border:       #3D4655;
 }

@@ -21,10 +21,9 @@
 @import "@ionic/angular/css/flex-utils.css";
 
 /*
- * Modo oscuro siempre activo — no detectamos preferencia del sistema.
- * Usamos dark.always.css para forzar el tema oscuro en todos los dispositivos.
+ * Modo oscuro manejado por clase (.dark / .ion-palette-dark).
  */
-@import "@ionic/angular/css/palettes/dark.always.css";
+@import "@ionic/angular/css/palettes/dark.class.css";
 
 /* ─── Tipografía: Inter desde Google Fonts ─── */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
@@ -35,10 +34,17 @@
   box-sizing: border-box;
 }
 
-/* Forzar fondo oscuro en el body */
+/* El body tomará los colores de las variables CSS de Ionic (light o dark) */
 body {
-  background-color: #111318;
-  color: #E2E8F0;
+  background-color: var(--ion-background-color);
+  color: var(--ion-text-color);
+}
+
+/* Centrar el contenido y evitar que ocupe todo el ancho en pantallas grandes */
+ion-content.ion-padding {
+  --padding-start: max(16px, calc((100vw - 800px) / 2));
+  --padding-end: max(16px, calc((100vw - 800px) / 2));
+  --padding-top: 24px;
 }
 
 /* Scrollbar personalizado para escritorio */

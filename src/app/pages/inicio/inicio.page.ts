@@ -4,14 +4,14 @@ del stack tecnológico principal.*/
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ThemeService } from '../../services/theme.service';
 import { addIcons } from 'ionicons';
 import {
   arrowForwardOutline, codeSlashOutline, menuOutline,
-  homeOutline, homeSharp,
+  homeOutline, homeSharp, moon, sunny
 } from 'ionicons/icons';
 import {
-  IonHeader, IonToolbar, IonTitle, IonContent, IonButtons,
-  IonMenuButton, IonCard, IonCardHeader, IonCardTitle,
+  IonContent, IonCard, IonCardHeader, IonCardTitle,
   IonCardContent, IonButton, IonIcon, IonChip, IonLabel,
   IonBadge, IonAvatar,
 } from '@ionic/angular/standalone';
@@ -25,8 +25,7 @@ import { CommonModule } from '@angular/common';
   // Importo todos los componentes de Ionic y Angular que uso en esta página
   imports: [
     CommonModule,
-    IonHeader, IonToolbar, IonTitle, IonContent, IonButtons,
-    IonMenuButton, IonCard, IonCardHeader, IonCardTitle,
+    IonContent, IonCard, IonCardHeader, IonCardTitle,
     IonCardContent, IonButton, IonIcon, IonChip, IonLabel,
     IonBadge, IonAvatar,
   ],
@@ -51,9 +50,9 @@ export class InicioPage implements OnInit {
     'Linux', 'Windows', 'Git', 'GitHub', 'Redes', 'Ciberseguridad',
   ];
 
-  constructor(private router: Router) {
+  constructor(private router: Router, public themeService: ThemeService) {
     // Registro los íconos que uso en esta página con addIcons()
-    addIcons({ arrowForwardOutline, codeSlashOutline, menuOutline, homeOutline, homeSharp });
+    addIcons({ arrowForwardOutline, codeSlashOutline, menuOutline, homeOutline, homeSharp, moon, sunny });
   }
 
   // Este método lo implementé para calcular el saludo según la hora actual del sistema
