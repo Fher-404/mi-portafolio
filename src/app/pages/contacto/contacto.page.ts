@@ -4,6 +4,7 @@ con ion-alert (éxito) e ion-toast (error).
 */
 
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { addIcons } from 'ionicons';
@@ -88,7 +89,12 @@ export class ContactoPage implements OnInit {
     },
   ];
 
-  constructor(private fb: FormBuilder, private router: Router, public themeService: ThemeService) {
+  constructor(
+    private fb: FormBuilder, 
+    private router: Router, 
+    public themeService: ThemeService,
+    private http: HttpClient
+  ) {
     // Registro los íconos usados en esta página con addIcons()
     addIcons({ sendOutline, mailOutline, callOutline, logoGithub, logoLinkedin, personOutline, moon, sunny });
 
@@ -130,23 +136,29 @@ export class ContactoPage implements OnInit {
   // Este getter facilita el acceso al control "mensaje" desde el template
   get mensajeCtrl() { return this.formularioContacto.get('mensaje'); }
 
-  // Este método lo implementé para validar el formulario y procesar el envío del mensaje
-  // Si el formulario es válido, limpio el formulario y muestro la alerta de éxito
-  // Si no es válido, marco todos los campos como tocados para mostrar los errores y abro el toast de error
+  // Envía el correo mediante Formspree
   enviarMensaje(): void {
     if (this.formularioContacto.valid) {
       // Activar estado de carga
       this.isSubmitting = true;
 
-      // Simular tiempo de petición al servidor (2 segundos)
-      setTimeout(() => {
-        // Desactivar estado de carga
-        this.isSubmitting = false;
-        // Limpio el formulario después del envío exitoso
-        this.formularioContacto.reset();
-        // Muestro la alerta de éxito al usuario
-        this.mostrarAlertaExito = true;
-      }, 2000);
+      // Endpoint de Formspree configurado por el usuario
+      const formspreeEndpoint = 'https://formspree.io/f/xvzjgppa';
+
+      // Petición POST real a Formspree con los valores del formulario
+      this.http.post(formspreeEndpoint, this.formularioContacto.value).subscribe({
+        next: () => {
+          this.isSubmitting = false;
+          this.formularioContacto.reset();
+          this.mostrarAlertaExito = true;
+        },
+        error: (err) => {
+          this.isSubmitting = false;
+          this.mensajeError = 'Ocurrió un error al enviar el correo. Verifica tu conexión o Endpoint.';
+          this.mostrarToastError = true;
+          console.error('Error de Formspree:', err);
+        }
+      });
     } else {
       // Marco todos los campos como tocados para activar la visualización de errores en el HTML
       this.formularioContacto.markAllAsTouched();

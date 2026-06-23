@@ -4,6 +4,7 @@
 
 import { bootstrapApplication } from '@angular/platform-browser';
 import { RouteReuseStrategy, provideRouter, withPreloading, PreloadAllModules } from '@angular/router';
+import { provideHttpClient } from '@angular/common/http';
 import { IonicRouteStrategy, provideIonicAngular } from '@ionic/angular/standalone';
 import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
@@ -17,5 +18,7 @@ bootstrapApplication(AppComponent, {
     provideIonicAngular(),
     // Configuración del router con lazy loading para todas las rutas
     provideRouter(routes, withPreloading(PreloadAllModules)),
+    // Habilito el módulo HTTP para el envío de formularios (Formspree)
+    provideHttpClient(),
   ],
 });
